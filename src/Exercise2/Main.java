@@ -7,21 +7,44 @@ public class Main {
     public static void main(String[] args) {
         Warehouse warehouse = new Warehouse("NumeroUno");
         Main main = new Main();
-        main.addProductsToWarehouse(warehouse);
-//        main.showProductOfWarehouse(warehouse);
+        main.addNewProductToWareHouse(warehouse);
+
+        System.out.println("Products are: ");
+        for (Product product:warehouse.getProducts()){
+            System.out.println(product.getName());
+        }
+        main.removeProductByName(warehouse, "Apple");
+
+        System.out.println("Check if product is deleted successfully");
+        System.out.println("After removing: ");
+        for(Product product:warehouse.getProducts()){
+            System.out.println(product.getName());
+        }
     }
 
-    public void addProductsToWarehouse (Warehouse warehouse) {
-        List<Product> milk = new ArrayList<>();
-        milk.add(new Product("Skimmed"));
-        milk.add(new Product("Not Skimmed"));
-        milk.add(new Product("Cow"));
-        warehouse.setProducts(milk);
+    private void addNewProductToWareHouse(Warehouse warehouse){
+        List<Product> products = new ArrayList<>();
+        products.add(new Product("Bread"));
+        products.add(new Product("Apple"));
+        products.add(new Product("Ice-cream"));
+        products.add(new Product("Chocolate"));
+        warehouse.setProducts(products);
     }
 
-//    public void showProductOfWarehouse (Warehouse warehouse) {
-//        for (Product product : warehouse.getNameOfProducts()){
-//            System.out.println(product.getName());
-//        }
-//    }
+    private void removeProductByName(Warehouse warehouse, String productName) {
+        Product foundProduct = null;
+        for(Product product : warehouse.getProducts()){
+            if(product.getName().equals(productName)){
+                foundProduct = product;
+            }
+        }
+        if(foundProduct!=null) {
+            warehouse.getProducts().remove(foundProduct);
+            System.out.println("--------------");
+            System.out.println("Product woth the given: " + productName+ "  is deleted");
+            System.out.println("--------------");
+        }
+
+
+    }
 }
