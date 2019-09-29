@@ -4,11 +4,27 @@ public class Product {
 
     private String name;
 
+    double getPrice() {
+        return price;
+    }
+
+    public Product setPrice(double price) {
+        this.price = price;
+        return this;
+    }
+
+    private double price;
+
+    Product(String name, double price) {
+        this.name = name;
+        this.price = price;
+    }
+
     public Product(String name) {
         this.name = name;
     }
 
-    public String getName() {
+    String getName() {
         return name;
     }
 

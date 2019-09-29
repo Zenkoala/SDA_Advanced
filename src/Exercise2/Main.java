@@ -20,14 +20,15 @@ public class Main {
         for(Product product:warehouse.getProducts()){
             System.out.println(product.getName());
         }
+        main.showPriceSummary(warehouse);
     }
 
     private void addNewProductToWareHouse(Warehouse warehouse){
         List<Product> products = new ArrayList<>();
-        products.add(new Product("Bread"));
-        products.add(new Product("Apple"));
-        products.add(new Product("Ice-cream"));
-        products.add(new Product("Chocolate"));
+        products.add(new Product("Bread",2.40));
+        products.add(new Product("Apple", 1.40));
+        products.add(new Product("Ice-cream", 0.85));
+        products.add(new Product("Chocolate", 3.80));
         warehouse.setProducts(products);
     }
 
@@ -41,10 +42,18 @@ public class Main {
         if(foundProduct!=null) {
             warehouse.getProducts().remove(foundProduct);
             System.out.println("--------------");
-            System.out.println("Product woth the given: " + productName+ "  is deleted");
+            System.out.println("Product with the given: " + productName+ "  is deleted");
             System.out.println("--------------");
         }
 
-
+    }
+    private void showPriceSummary(Warehouse warehouse) {
+        double totalPrice = 0.0;
+        for (Product product : warehouse.getProducts()){
+            totalPrice += product.getPrice();
+        }
+        System.out.println("--------------");
+        System.out.println("Total price is: " + totalPrice);
+        System.out.println("Number of products: " + warehouse.getProducts().size());
     }
 }
